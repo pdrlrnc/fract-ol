@@ -16,5 +16,17 @@
 #include "mlx_int.h"
 #include "mlx.h"
 #include "printf.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct s_params
+{
+	void	*init;
+	void	*window;
+
+}	t_params;
+
+int	key_handler(int keycode);
+void	**params_factory(char param);
 
 #endif

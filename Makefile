@@ -21,7 +21,7 @@ NAME		= fratol
 CC			= cc
 RM			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -I$(INC_DIR)
-LDFLAGS		= -L$(FT_PRINTF) -lftprintf -L$(MINILIBX) -lbsd
+LDFLAGS		= -L$(FT_PRINTF) -lftprintf -L$(MINILIBX) -lmlx -lXext -lm -lbsd -lX11
 
 SRC			= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
@@ -33,7 +33,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) -g $(CFLAGS) -c $< -o $@
-
+	
 $(NAME): $(OBJ)
 	@make -s -C $(FT_PRINTF)
 	@make bonus -s -C $(FT_PRINTF)
