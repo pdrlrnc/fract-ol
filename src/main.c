@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	mlx_loop((*param_factory())->init);
 	exit(EXIT_SUCCESS);
 }
+
 int	mouse_handler(int mousecode)
 {
 	if (mousecode)
@@ -36,7 +37,10 @@ int	mouse_handler(int mousecode)
 int	key_handler(int keycode)
 {
 	if (keycode == 65307)
+	{
 		mlx_destroy_window((*param_factory())->init,(*param_factory())->window);
+		free(*param_factory());
+	}
 	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
 	return (0);
