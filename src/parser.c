@@ -14,7 +14,7 @@
 
 void	parse_args(int argc, char **argv)
 {
-	if (argc < 4)
+	if (argc != 4 && argc != 7)
 		write_options();
 	get_set(argv[1]);
 	if (check_nb(argv[2]) == 2)
@@ -25,7 +25,16 @@ void	parse_args(int argc, char **argv)
 		get_double_values(argv[3], 'i');
 	else
 		get_int_values(argv[3], 'i');
-	
+	if (argc == 7 
+		&& check_nb(argv[5]) == 1 
+		&& check_nb(argv[6]) == 1 
+		&& (ft_strisequal(argv[4], "-W") || ft_strisequal(argv[4], "--window")))
+	{
+		(*param_factory())->wx = ft_atoi(argv[5]);
+		(*param_factory())->wy = ft_atoi(argv[6]);
+	}
+	else if (argc != 4)
+		write_options();
 }
 
 int	check_nb(char *nb)
@@ -113,9 +122,13 @@ t_params	**param_factory(void)
 	static t_params *params;
 	
 	if (!params)
+	{
 		params = malloc(sizeof(t_params));
-	if (!params)
-		exit(EXIT_FAILURE);
+		if (!params)
+			exit(EXIT_FAILURE);
+		params->wx = 500;
+		params->wy = 500;
+	}
 	return (&params);
 }
 
