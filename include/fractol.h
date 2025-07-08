@@ -38,7 +38,9 @@ void	write_options(void);
 void	parse_args(int argc, char **argv);
 void	get_set(char *set);
 t_params	**param_factory(void);
-void	get_values(char *value1, char type);
+void	get_double_values(char *value1, char type);
+void	get_int_values(char *value1, char type);
 void	clean_split(char **split);
+int	check_nb(char *nb);
 
 #endif

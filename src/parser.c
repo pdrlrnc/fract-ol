@@ -17,9 +17,38 @@ void	parse_args(int argc, char **argv)
 	if (argc < 4)
 		write_options();
 	get_set(argv[1]);
-	get_values(argv[2], 'r');
-	get_values(argv[3], 'i');
+	if (check_nb(argv[2]) == 2)
+		get_double_values(argv[2], 'r');
+	else
+		get_int_values(argv[2], 'r');
+	if (check_nb(argv[3]) == 2)
+		get_double_values(argv[3], 'i');
+	else
+		get_int_values(argv[3], 'i');
+	
+}
 
+int	check_nb(char *nb)
+{
+	int	i;
+
+	i = 0;
+	while (*(nb + i) && *(nb + i) == ' ')
+		i++;
+	while (*(nb + i) && *(nb + i) >= '0' && *(nb + i) <= '9')
+		i++;
+	if (!*(nb + i))
+		return (1);
+	if (*(nb + i) == '.')
+		i++;
+	if (!*(nb + i))
+		write_options();
+	while (*(nb + i) && *(nb + i) >= '0' && *(nb + i) <= '9')
+		i++;
+	if (!*(nb + i))
+		return (2);
+	write_options();
+	return (-1);
 }
 
 void	get_set(char *set)
@@ -32,12 +61,23 @@ void	get_set(char *set)
 		write_options();
 }
 
-void	get_values(char *value1, char type)
+void	get_int_values(char *value1, char type)
+{
+	double	value;
+
+	value = (double) ft_atoi(value1);
+	if (type == 'r')
+		(*param_factory())->rl = value;
+	else
+		(*param_factory())->im = value;
+}
+
+void	get_double_values(char *value1, char type)
 {
 	double	value;
 	int	hole;
 	int	dec;
-	int	dec_size;
+	double	dec_double;
 	char	**split;
 
 	value = 0.0;
@@ -45,14 +85,12 @@ void	get_values(char *value1, char type)
 	hole = ft_atoi(split[0]);
 	value += hole;
 	dec = ft_atoi(split[1]);
-	dec_size = ft_nbsize(dec);
-	while (dec_size--)
+	hole = ft_nbsize(dec);
+	while (hole--)
 		value *= 10;
 	value += dec;
-	dec_size = ft_nbsize(dec);
-	while (dec_size--)
-		value *= 0.1;
-	value = round(value * 100.0) / 100.0;
+	dec_double = (double)dec / pow(10, ft_nbsize(dec));
+	value += dec_double;
 	if (type == 'r')
 		(*param_factory())->rl = value;
 	else
@@ -83,6 +121,7 @@ t_params	**param_factory(void)
 
 void	write_options(void)
 {
+	free(*param_factory());
 	ft_printf("\033[1;36m");
 	ft_printf(" ____  ____    __    ___  ____     _____  __   \n");
 	ft_printf("( ___)(  _ \\  /__\\  / __)(_  _)___(  _  )(  )  \n");
