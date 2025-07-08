@@ -54,5 +54,6 @@ int	check_nb(char *nb);
 t_image	**image_factory(void);
 void	setup_image(void);
 void	my_mlx_pixel_put(int x, int y, int color);
+void	draw_mandlebrot(void);
 
 #endif

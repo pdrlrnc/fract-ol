@@ -14,9 +14,23 @@
 
 void	parse_args(int argc, char **argv)
 {
-	if (argc != 4 && argc != 7)
+	if (argc != 2 && argc != 4 && argc != 5 && argc != 7)
 		write_options();
 	get_set(argv[1]);
+	if ((*param_factory())->set == 'm' 
+		&& argc == 5
+		&& (ft_strisequal(argv[2], "-W") || (ft_strisequal(argv[2], "--window")))
+		&& check_nb(argv[3]) == 1 
+		&& check_nb(argv[4]) == 1)
+	{
+		(*param_factory())->wx = ft_atoi(argv[3]);
+		(*param_factory())->wy = ft_atoi(argv[4]);
+		return ;
+	}
+	if ((*param_factory())->set == 'm' && argc == 2)
+		return ;
+	if ((*param_factory())->set == 'm') 
+		write_options();
 	if (check_nb(argv[2]) == 2)
 		get_double_values(argv[2], 'r');
 	else
@@ -32,9 +46,9 @@ void	parse_args(int argc, char **argv)
 	{
 		(*param_factory())->wx = ft_atoi(argv[5]);
 		(*param_factory())->wy = ft_atoi(argv[6]);
+		return ;
 	}
-	else if (argc != 4)
-		write_options();
+	write_options();
 }
 
 int	check_nb(char *nb)
@@ -130,12 +144,10 @@ void	write_options(void)
 	ft_printf("               ~ Fract-ol ~                 \n");
 	ft_printf("\033[0m");
 	ft_printf("               ~ Options: ~                \n");
-	ft_printf("-J --julia\t\t\tUse the Julia set\n");
-	ft_printf("-M --mandelbrot\t\t\tUse the Mandelbrot set\n");
-	ft_printf("-W --window\t\t\tWindow size\n\n");
-	ft_printf("After passing the set you should pass x and y as in z = x + yi (z is a complex number). The set is required.\n");
-	ft_printf("After passing the window you have to pass x and y for the window size. The window is not required.\n\n");
-	ft_printf("Example: ./fractol -J 4.3 2.5 --window 600 400\n\n");
+	ft_printf("-M  --mandelbrot\t\tUse the Mandelbrot set.\n");
+	ft_printf("-J  --julia\t\t\tUse the Julia set. NEEDS x and y as in z = x + yi (z is a complex number).\n");
+	ft_printf("-W  --window\t\t\tWindow size. NEEDS x and y. Not required.\n\n");
+	ft_printf("The set is required. Example: ./fractol -J 4.3 2.5 --window 600 400\n\n");
 	ft_printf("Press ESC at any time of the program exexcution to exit\n\n");
 	exit(EXIT_FAILURE);
 }
