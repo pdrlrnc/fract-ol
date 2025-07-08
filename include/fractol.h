@@ -32,6 +32,15 @@ typedef struct s_params
 	void	*window;
 }	t_params;
 
+typedef struct s_image
+{
+	void	*image;
+	char	*addr;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+}	t_image;
+
 int	key_handler(int keycode);
 int	mouse_handler(int mousecode);
 void	write_options(void);
@@ -42,5 +51,8 @@ void	get_double_values(char *value1, char type);
 void	get_int_values(char *value1, char type);
 void	clean_split(char **split);
 int	check_nb(char *nb);
+t_image	**image_factory(void);
+void	setup_image(void);
+void	my_mlx_pixel_put(int x, int y, int color);
 
 #endif

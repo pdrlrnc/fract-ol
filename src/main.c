@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 		ft_printf("Fds2");
 	mlx_key_hook((*param_factory())->window, key_handler, NULL);
 	mlx_mouse_hook((*param_factory())->window, mouse_handler, NULL);
+	setup_image();
 	mlx_loop((*param_factory())->init);
 	exit(EXIT_SUCCESS);
 }
@@ -44,4 +45,20 @@ int	key_handler(int keycode)
 	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
 	return (0);
+}
+
+void	setup_image(void)
+{
+	(*image_factory())->image = mlx_new_image((*param_factory())->init, 500, 500);
+	(*image_factory())->addr = mlx_get_data_addr((*image_factory())->image, &((*image_factory())->bits_per_pixel), &((*image_factory())->line_length), &((*image_factory())->endian));
+	my_mlx_pixel_put(5, 5, 0x00FF0000);
+	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
+}
+
+void	my_mlx_pixel_put(int x, int y, int color)
+{
+	char	*dst;
+
+	dst = (*image_factory())->addr + (int) ((y * (*image_factory())->line_length + x * ((*image_factory())->bits_per_pixel / 8)));
+	*(unsigned int*)dst = color;
 }

@@ -44,6 +44,8 @@ int	check_nb(char *nb)
 	i = 0;
 	while (*(nb + i) && *(nb + i) == ' ')
 		i++;
+	if (*(nb + i) && (*(nb + i) == '-' || *(nb + i) == '+'))
+		i++;
 	while (*(nb + i) && *(nb + i) >= '0' && *(nb + i) <= '9')
 		i++;
 	if (!*(nb + i))
@@ -86,20 +88,20 @@ void	get_double_values(char *value1, char type)
 	double	value;
 	int	hole;
 	int	dec;
-	double	dec_double;
 	char	**split;
+	double	decimal_part;
 
 	value = 0.0;
 	split = ft_split(value1, '.');
 	hole = ft_atoi(split[0]);
-	value += hole;
 	dec = ft_atoi(split[1]);
-	hole = ft_nbsize(dec);
-	while (hole--)
-		value *= 10;
-	value += dec;
-	dec_double = (double)dec / pow(10, ft_nbsize(dec));
-	value += dec_double;
+	decimal_part = dec;
+	dec = ft_nbsize(dec);
+	while (dec--)
+		decimal_part *= 0.1;
+	value = abs(hole) + decimal_part;
+	if (hole < 0)
+		value *= -1;
 	if (type == 'r')
 		(*param_factory())->rl = value;
 	else
@@ -115,21 +117,6 @@ void	clean_split(char **split)
 	while (split[i] != NULL)
 		free(split[i++]);
 	free(split);
-}
-
-t_params	**param_factory(void)
-{
-	static t_params *params;
-	
-	if (!params)
-	{
-		params = malloc(sizeof(t_params));
-		if (!params)
-			exit(EXIT_FAILURE);
-		params->wx = 500;
-		params->wy = 500;
-	}
-	return (&params);
 }
 
 void	write_options(void)

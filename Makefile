@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILES	= main parser
+SRC_FILES	= main parser factories
 FT_PRINTF	= ft_printf
 MINILIBX	= minilibx-linux
 SRC_DIR		= src
