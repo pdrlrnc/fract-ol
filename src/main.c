@@ -12,43 +12,38 @@
 
 #include "../include/fractol.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	void	**init;
+/**	void	**init;
 	void	**window;
-	
-	init = params_factory('i');
+*/
+	parse_args(argc, argv);
+/**	init = params_factory('i');
 	window = params_factory('w');
 	*init = mlx_init();
 	if(!*init)
 		ft_printf("Fds");
-	*window = mlx_new_window(*init, 500, 500, "Opa");
+	*window = mlx_new_window(*init, 500, 500, "fractol");
 	if (!*window)
 		ft_printf("Fds2");
 	mlx_key_hook(*window, key_handler, NULL);
+	mlx_mouse_hook(*window, mouse_handler, NULL);
 	mlx_loop(*init);
-	exit(EXIT_SUCCESS);
+*/	exit(EXIT_SUCCESS);
 }
-
-void	**params_factory(char param)
+int	mouse_handler(int mousecode)
 {
-	static void	*init;
-	static void	*window;
-
-	if (param == 'i')
-		return (&init);
-	if (param == 'w')
-		return (&window);
-	return (NULL);
+	if (mousecode)
+		return (0);
+	return (1);
 }
 
 int	key_handler(int keycode)
 {
 	if (keycode == 65307)
-	{
-		mlx_destroy_window(*params_factory('i'), *params_factory('w'));
+		return (0);
+	//	mlx_destroy_window(*params_factory('i'), *params_factory('w'));
+	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
-	}
 	return (0);
 }
-

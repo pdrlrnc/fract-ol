@@ -69,5 +69,6 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char		*ft_strdup(const char *s);
 int			ft_putnbr_base_fd(unsigned long long nbr, char *base, int fd);
 int			ft_strisequal(char *str1, char *str2);
+int			ft_nbsize(int nb);
 
 #endif

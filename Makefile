@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILES	= main
+SRC_FILES	= main parser
 FT_PRINTF	= ft_printf
 MINILIBX	= minilibx-linux
 SRC_DIR		= src
 OBJ_DIR		= obj
 INC_DIR		= include
-NAME		= fratol
+NAME		= fractol
 
 CC			= cc
 RM			= rm -rf
