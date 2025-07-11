@@ -24,10 +24,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook((*param_factory())->window, key_handler, NULL);
 	mlx_mouse_hook((*param_factory())->window, mouse_handler, NULL);
 	setup_image();
-	t_complex	point;
-	point.rl = -0.026;
-	point.im = -0.608;
-	draw_mandlebrot(point);
 	mlx_loop((*param_factory())->init);
 	exit(EXIT_SUCCESS);
 }
@@ -54,9 +50,10 @@ int	key_handler(int keycode)
 
 void	setup_image(void)
 {
-	(*image_factory())->image = mlx_new_image((*param_factory())->init, 500, 500);
+	(*image_factory())->image = mlx_new_image((*param_factory())->init, (*param_factory())->wx, (*param_factory())->wy);
 	(*image_factory())->addr = mlx_get_data_addr((*image_factory())->image, &((*image_factory())->bits_per_pixel), &((*image_factory())->line_length), &((*image_factory())->endian));
-	my_mlx_pixel_put(5, 5, 0x00FF0000);
+	if ((*param_factory())->set == 'm')
+		draw_mandlebrot();
 	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
 }
 

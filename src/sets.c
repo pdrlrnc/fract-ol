@@ -13,9 +13,8 @@
 #include "fractol.h"
 #include <stdio.h>
 
-void	draw_mandlebrot(t_complex point)
-{
-
+int	is_in_mandlebrot(t_complex point)
+{	
 	int			i;
 	t_complex	curr;
 
@@ -26,11 +25,28 @@ void	draw_mandlebrot(t_complex point)
 	{
 		curr = add_complex(square_complex(curr), point);
 		if (((curr.rl * curr.rl) + (curr.im * curr.im)) > 4)
+			return (0);
+	}
+	return (1);
+
+}
+
+void	draw_mandlebrot(void)
+{
+	t_pixel pixel;
+
+	pixel.px = 0;
+	pixel.py = 0;
+	while (pixel.py < (*param_factory())->wy)
+	{
+		pixel.px = 0;
+		while (pixel.px < (*param_factory())->wx)
 		{
-			printf("NOT IN MANDLEBROT\n");
-			break ;
+			if (is_in_mandlebrot(scale_mandlebrot(pixel)))
+				my_mlx_pixel_put(pixel.px, pixel.py, 0x00FF0000);
+			pixel.px++;
 		}
-		printf("it %d: (%f + %fi)\n", i, curr.rl, curr.im);
+		pixel.py++;
 	}
 }
 
