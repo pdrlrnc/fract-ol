@@ -29,7 +29,7 @@ MAGENTA = \033[0;95m
 
 OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-CC			= cc
+CC			= cc -g
 RM			= rm -rf
 CFLAGS			= -Wall -Wextra -Werror -I$(INCLUDES)
 

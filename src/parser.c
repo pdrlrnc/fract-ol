@@ -31,6 +31,8 @@ void	parse_args(int argc, char **argv)
 		return ;
 	if ((*param_factory())->set == 'm') 
 		write_options();
+	if ((*param_factory())->set == 'j' && argc == 2)
+		write_options();
 	if (check_nb(argv[2]) == 2)
 		get_double_values(argv[2], 'r');
 	else
@@ -48,7 +50,6 @@ void	parse_args(int argc, char **argv)
 		(*param_factory())->wy = ft_atoi(argv[6]);
 		return ;
 	}
-	write_options();
 }
 
 int	check_nb(char *nb)

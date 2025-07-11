@@ -24,6 +24,10 @@ int	main(int argc, char **argv)
 	mlx_key_hook((*param_factory())->window, key_handler, NULL);
 	mlx_mouse_hook((*param_factory())->window, mouse_handler, NULL);
 	setup_image();
+	t_complex	point;
+	point.rl = -0.026;
+	point.im = -0.608;
+	draw_mandlebrot(point);
 	mlx_loop((*param_factory())->init);
 	exit(EXIT_SUCCESS);
 }
@@ -39,6 +43,7 @@ int	key_handler(int keycode)
 {
 	if (keycode == 65307)
 	{
+		mlx_destroy_image((*param_factory())->init, (*image_factory())->image);
 		mlx_destroy_window((*param_factory())->init,(*param_factory())->window);
 		free(*param_factory());
 	}

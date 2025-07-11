@@ -32,6 +32,12 @@ typedef struct s_params
 	void	*window;
 }	t_params;
 
+typedef struct s_complex
+{
+	double	rl;
+	double	im;
+}	t_complex;
+
 typedef struct s_image
 {
 	void	*image;
@@ -54,6 +60,8 @@ int	check_nb(char *nb);
 t_image	**image_factory(void);
 void	setup_image(void);
 void	my_mlx_pixel_put(int x, int y, int color);
-void	draw_mandlebrot(void);
+void	draw_mandlebrot(t_complex point);
+t_complex	square_complex(t_complex point);
+t_complex	add_complex(t_complex point1, t_complex point2);
 
 #endif
