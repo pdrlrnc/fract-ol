@@ -21,7 +21,7 @@ int	is_in_mandlebrot(t_complex point)
 	i = 0;
 	curr.rl = point.rl;
 	curr.im = point.im;
-	while (++i < 10000)
+	while (++i < 500)
 	{
 		curr = add_complex(square_complex(curr), point);
 		if (((curr.rl * curr.rl) + (curr.im * curr.im)) > 4)
