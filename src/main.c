@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	(*param_factory())->window = mlx_new_window((*param_factory())->init , (*param_factory())->wx,  (*param_factory())->wy, "fract-ol");
 	if (!(*param_factory())->window)
 		ft_printf("Fds2");
+	mlx_hook((*param_factory())->window, DestroyNotify, (1L<<17), on_destroy, NULL);
 	mlx_key_hook((*param_factory())->window, key_handler, NULL);
 	mlx_mouse_hook((*param_factory())->window, mouse_handler, NULL);
 	setup_image();
@@ -48,8 +49,6 @@ void	cleanup(void)
 
 int	key_handler(int keycode)
 {
-	if (keycode == XK_Escape)
-		cleanup();
 	if (keycode == 65307)
 		cleanup();
 	if (keycode == 65307)

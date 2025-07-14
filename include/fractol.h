@@ -73,5 +73,6 @@ t_complex	add_complex(t_complex point1, t_complex point2);
 t_complex	scale_mandlebrot(t_pixel p);
 int	is_in_mandlebrot(t_complex point);
 void	cleanup(void);
+int	on_destroy(void *param);
 
 #endif
