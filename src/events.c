@@ -19,3 +19,15 @@ int	on_destroy(void *param)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
+
+void	on_right_key(void)
+{
+	double	delta;
+	double	aspect;
+
+	aspect = (*param_factory())->wy / (*param_factory())->wx;
+	delta = 10 * ((*param_factory())->rl_max - (*param_factory())->rl_min) / (*param_factory())->wx;
+	(*param_factory())->rl_min -= delta;
+	(*param_factory())->rl_max -= (delta * aspect);
+	draw_mandlebrot();
+}

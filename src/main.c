@@ -21,9 +21,7 @@ int	main(int argc, char **argv)
 	(*param_factory())->window = mlx_new_window((*param_factory())->init , (*param_factory())->wx,  (*param_factory())->wy, "fract-ol");
 	if (!(*param_factory())->window)
 		ft_printf("Fds2");
-	mlx_hook((*param_factory())->window, DestroyNotify, (1L<<17), on_destroy, NULL);
-	mlx_key_hook((*param_factory())->window, key_handler, NULL);
-	mlx_mouse_hook((*param_factory())->window, mouse_handler, NULL);
+	create_hooks();
 	setup_image();
 	mlx_loop((*param_factory())->init);
 	exit(EXIT_SUCCESS);
@@ -34,6 +32,13 @@ int	mouse_handler(int mousecode)
 	if (mousecode)
 		return (0);
 	return (1);
+}
+
+void	create_hooks(void)
+{
+	mlx_hook((*param_factory())->window, DestroyNotify, (1L<<17), on_destroy, NULL);
+	mlx_key_hook((*param_factory())->window, key_handler, NULL);
+	mlx_mouse_hook((*param_factory())->window, mouse_handler, NULL);
 }
 
 void	cleanup(void)
@@ -49,8 +54,11 @@ void	cleanup(void)
 
 int	key_handler(int keycode)
 {
+	ft_printf("|%d|\n", keycode);
 	if (keycode == 65307)
 		cleanup();
+	if (keycode == 65363)
+		on_right_key();
 	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
 	return (0);
@@ -62,7 +70,6 @@ void	setup_image(void)
 	(*image_factory())->addr = mlx_get_data_addr((*image_factory())->image, &((*image_factory())->bits_per_pixel), &((*image_factory())->line_length), &((*image_factory())->endian));
 	if ((*param_factory())->set == 'm')
 		draw_mandlebrot();
-	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
 }
 
 void	my_mlx_pixel_put(int x, int y, int color)

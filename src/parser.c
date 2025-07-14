@@ -28,7 +28,13 @@ void	parse_args(int argc, char **argv)
 		return ;
 	}
 	if ((*param_factory())->set == 'm' && argc == 2)
+	{
+		(*param_factory())->rl_min = -2;
+		(*param_factory())->rl_max = 2;
+		(*param_factory())->im_min = -2;
+		(*param_factory())->im_max = 2;
 		return ;
+	}
 	if ((*param_factory())->set == 'm') 
 		write_options();
 	if ((*param_factory())->set == 'j' && argc == 2)

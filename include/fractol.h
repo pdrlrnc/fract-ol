@@ -28,6 +28,10 @@ typedef struct s_params
 	double	im;
 	double	wx;
 	double	wy;
+	double	rl_max;
+	double	rl_min;
+	double	im_max;
+	double	im_min;
 	void	*init;
 	void	*window;
 }	t_params;
@@ -74,5 +78,7 @@ t_complex	scale_mandlebrot(t_pixel p);
 int	is_in_mandlebrot(t_complex point);
 void	cleanup(void);
 int	on_destroy(void *param);
+void	create_hooks(void);
+void	on_right_key(void);
 
 #endif

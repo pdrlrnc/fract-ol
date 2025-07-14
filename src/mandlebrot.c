@@ -49,6 +49,7 @@ void	draw_mandlebrot(void)
 		}
 		pixel.py++;
 	}
+	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
 }
 
 t_complex	square_complex(t_complex point)
