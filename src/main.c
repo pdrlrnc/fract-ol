@@ -35,14 +35,23 @@ int	mouse_handler(int mousecode)
 	return (1);
 }
 
+void	cleanup(void)
+{
+	mlx_destroy_image((*param_factory())->init, (*image_factory())->image);
+	mlx_destroy_window((*param_factory())->init,(*param_factory())->window);
+	mlx_destroy_display((*param_factory())->init);
+	free((*param_factory())->init);
+	free(*param_factory());
+	free(*image_factory());
+	exit(EXIT_SUCCESS);
+}
+
 int	key_handler(int keycode)
 {
+	if (keycode == XK_Escape)
+		cleanup();
 	if (keycode == 65307)
-	{
-		mlx_destroy_image((*param_factory())->init, (*image_factory())->image);
-		mlx_destroy_window((*param_factory())->init,(*param_factory())->window);
-		free(*param_factory());
-	}
+		cleanup();
 	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
 	return (0);
