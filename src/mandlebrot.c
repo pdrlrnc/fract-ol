@@ -25,25 +25,26 @@ int	is_in_mandlebrot(t_complex point)
 	{
 		curr = add_complex(square_complex(curr), point);
 		if (((curr.rl * curr.rl) + (curr.im * curr.im)) > 4)
-			return (0);
+			return (i);
 	}
-	return (1);
+	return (i);
 
 }
 
 void	draw_mandlebrot(void)
 {
 	t_pixel pixel;
+	int		step;
 
 	pixel.px = 0;
 	pixel.py = 0;
+	step = 0x00FFFFFF / 499;
 	while (pixel.py < (*param_factory())->wy)
 	{
 		pixel.px = 0;
 		while (pixel.px < (*param_factory())->wx)
 		{
-			if (is_in_mandlebrot(scale_mandlebrot(pixel)))
-				my_mlx_pixel_put(pixel.px, pixel.py, 0x00FF0000);
+			my_mlx_pixel_put(pixel.px, pixel.py, (is_in_mandlebrot(scale_mandlebrot(pixel))* step));
 			pixel.px++;
 		}
 		pixel.py++;

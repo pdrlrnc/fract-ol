@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILES	= main parser factories sets render
+SRC_FILES	= main parser factories mandlebrot render
 FT_PRINTF	= ft_printf
 MINILIBX	= minilibx-linux
 SRC_DIR		= src

@@ -15,8 +15,10 @@
 t_complex	scale_mandlebrot(t_pixel p)
 {
 	t_complex	res;
+	double	aspect;
 
+	aspect = (*param_factory())->wy / (*param_factory())->wx;
 	res.rl = -2 + ((p.px) * 4) / ((*param_factory())->wx);
-	res.im = -1 + ((p.py) * 2) / ((*param_factory())->wy);
+	res.im = (-2 * aspect) + ((p.py) * 4) / ((*param_factory())->wy);
 	return (res);
 }
