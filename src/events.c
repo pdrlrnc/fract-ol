@@ -35,7 +35,7 @@ void	on_x_axys_key(int keycode)
 		(*param_factory())->rl_min += delta;
 		(*param_factory())->rl_max += delta;
 	}
-	draw_mandlebrot();
+	draw_fractal();
 }
 
 void	on_y_axys_key(int keycode)
@@ -53,5 +53,5 @@ void	on_y_axys_key(int keycode)
 		(*param_factory())->im_min += delta;
 		(*param_factory())->im_max += delta;
 	}
-	draw_mandlebrot();
+	draw_fractal();
 }

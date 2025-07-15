@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-t_complex	scale_mandlebrot(t_pixel p)
+t_complex	scale_pixel(t_pixel p)
 {
 	t_complex	res;
 	double	aspect;

@@ -69,10 +69,7 @@ void	setup_image(void)
 {
 	(*image_factory())->image = mlx_new_image((*param_factory())->init, (*param_factory())->wx, (*param_factory())->wy);
 	(*image_factory())->addr = mlx_get_data_addr((*image_factory())->image, &((*image_factory())->bits_per_pixel), &((*image_factory())->line_length), &((*image_factory())->endian));
-	if ((*param_factory())->set == 'm')
-		draw_mandlebrot();
-	else
-		draw_julia();
+	draw_fractal();
 }
 
 void	my_mlx_pixel_put(int x, int y, int color)

@@ -31,7 +31,28 @@ int	is_in_mandlebrot(t_complex point)
 
 }
 
-void	draw_mandlebrot(void)
+int	is_in_julia(t_complex complex)
+{
+	t_complex	squared;
+	t_complex	aux;
+	int	i;
+
+	i = 0;
+	while (++i < 50000)
+	{
+		squared.rl = complex.rl * complex.rl;
+		squared.im = complex.im * complex.im;
+		if (squared.rl + squared.im > 4.0)
+			return (i);
+		aux.rl = squared.rl - squared.im + (*param_factory())->julia_values.rl;
+		aux.im = 2 * complex.rl * complex.im + (*param_factory())->julia_values.im;
+		complex.rl = aux.rl;
+		complex.im = aux.im;
+	}
+	return (i);
+}
+
+void	draw_fractal(void)
 {
 	t_pixel pixel;
 	int		step;
@@ -44,37 +65,13 @@ void	draw_mandlebrot(void)
 		pixel.px = 0;
 		while (pixel.px < (*param_factory())->wx)
 		{
-			my_mlx_pixel_put(pixel.px, pixel.py, (is_in_mandlebrot(scale_mandlebrot(pixel))* step));
+			if ((*param_factory())->set == 'm')
+				my_mlx_pixel_put(pixel.px, pixel.py, (is_in_mandlebrot(scale_pixel(pixel))* step));
+			else
+				my_mlx_pixel_put(pixel.px, pixel.py, (is_in_julia(scale_pixel(pixel))* step));
 			pixel.px++;
 		}
 		pixel.py++;
 	}
-	mlx_clear_window((*param_factory())->init, (*param_factory())->window);
 	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
-}
-
-t_complex	square_complex(t_complex point)
-{
-	t_complex	res;
-
-	res.rl = (point.rl * point.rl) - (point.im * point.im);
-	res.im = 2 * point.rl * point.im;
-	return (res);
-}
-
-t_complex	add_complex(t_complex point1, t_complex point2)
-{
-	t_complex	res;
-
-	res.rl = point1.rl + point2.rl;
-	res.im = point1.im + point2.im;
-	return (res);
-}
-
-double	compute_magnitude(t_complex point)
-{
-	double	res;
-
-	res = sqrt((point.rl * point.rl) + (point.im * point.im));
-	return (res);
 }
