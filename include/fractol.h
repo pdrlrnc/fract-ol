@@ -79,7 +79,7 @@ int	is_in_mandlebrot(t_complex point);
 void	cleanup(void);
 int	on_destroy(void *param);
 void	create_hooks(void);
-void	on_right_key(void);
+void	on_x_axys_key(int keycode);
 void	print_params(void);
 
 #endif

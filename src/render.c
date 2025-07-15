@@ -16,9 +16,13 @@ t_complex	scale_mandlebrot(t_pixel p)
 {
 	t_complex	res;
 	double	aspect;
+	double	real_range;
+	double	imag_range;
 
+	real_range = (*param_factory())->rl_max - (*param_factory())->rl_min;
+	imag_range = (*param_factory())->im_max - (*param_factory())->im_min;
 	aspect = (*param_factory())->wy / (*param_factory())->wx;
-	res.rl = (*param_factory())->rl_min + ((p.px) * 2 * ((*param_factory())->rl_max)) / ((*param_factory())->wx);
-	res.im = ((*param_factory())->im_min * aspect) + ((p.py) * 2 * ((*param_factory())->im_max)) / ((*param_factory())->wy);
+	res.rl = (*param_factory())->rl_min + ((double)p.px / (*param_factory())->wx) * real_range;
+	res.im = (*param_factory())->im_min + ((double)p.py / (*param_factory())->wy) * imag_range;
 	return (res);
 }

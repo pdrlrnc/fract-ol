@@ -20,14 +20,20 @@ int	on_destroy(void *param)
 	return (0);
 }
 
-void	on_right_key(void)
+void	on_x_axys_key(int keycode)
 {
 	double	delta;
-	double	aspect;
 
-	aspect = (*param_factory())->wy / (*param_factory())->wx;
 	delta = 10 * ((*param_factory())->rl_max - (*param_factory())->rl_min) / (*param_factory())->wx;
-	(*param_factory())->rl_min -= delta;
-	(*param_factory())->rl_max -= (delta * aspect);
+	if (keycode == 65363)
+	{
+		(*param_factory())->rl_min -= delta;
+		(*param_factory())->rl_max -= delta;
+	}
+	else
+	{
+		(*param_factory())->rl_min += delta;
+		(*param_factory())->rl_max += delta;
+	}
 	draw_mandlebrot();
 }

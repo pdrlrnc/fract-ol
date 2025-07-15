@@ -57,8 +57,8 @@ int	key_handler(int keycode)
 	ft_printf("|%d|\n", keycode);
 	if (keycode == 65307)
 		cleanup();
-	if (keycode == 65363)
-		on_right_key();
+	if (keycode == 65363 || keycode == 65361)
+		on_x_axys_key(keycode);
 	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
 	return (0);

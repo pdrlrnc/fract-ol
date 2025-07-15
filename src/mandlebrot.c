@@ -38,7 +38,7 @@ void	draw_mandlebrot(void)
 
 	pixel.px = 0;
 	pixel.py = 0;
-	step = 0x00FFFFFF / 499;
+	step = 0x00FFFFFF / 500;
 	while (pixel.py < (*param_factory())->wy)
 	{
 		pixel.px = 0;
@@ -49,6 +49,7 @@ void	draw_mandlebrot(void)
 		}
 		pixel.py++;
 	}
+	mlx_clear_window((*param_factory())->init, (*param_factory())->window);
 	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
 }
 
