@@ -21,22 +21,6 @@
 #include <stdio.h>
 #include <math.h>
 
-typedef struct s_params
-{
-	char	set;
-	double	rl;
-	double	im;
-	double	wx;
-	double	wy;
-	double	rl_max;
-	double	rl_min;
-	double	im_max;
-	double	im_min;
-	void	*init;
-	void	*window;
-}	t_params;
-
-
 typedef struct s_pixel
 {
 	int	px;
@@ -57,6 +41,22 @@ typedef struct s_image
 	int	line_length;
 	int	endian;
 }	t_image;
+
+typedef struct s_params
+{
+	char	set;
+	t_complex	julia_values;
+	double	wx;
+	double	wy;
+	double	rl_max;
+	double	rl_min;
+	double	im_max;
+	double	im_min;
+	void	*init;
+	void	*window;
+}	t_params;
+
+
 
 int	key_handler(int keycode);
 int	mouse_handler(int mousecode);
@@ -80,6 +80,10 @@ void	cleanup(void);
 int	on_destroy(void *param);
 void	create_hooks(void);
 void	on_x_axys_key(int keycode);
+void	on_y_axys_key(int keycode);
 void	print_params(void);
+void	draw_julia(void);
+int	is_in_julia(t_complex complex);
+double	compute_magnitude(t_complex point);
 
 #endif

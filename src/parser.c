@@ -82,13 +82,11 @@ void	get_set(char *set)
 	if (ft_strisequal(set, "-J") || ft_strisequal(set, "--julia"))
 		(*param_factory())->set = 'j';
 	if (ft_strisequal(set, "-M") || ft_strisequal(set, "--mandelbrot"))
-	{
 		(*param_factory())->set = 'm';
-		(*param_factory())->rl_min = -2;
-		(*param_factory())->rl_max = 2;
-		(*param_factory())->im_min = -2;
-		(*param_factory())->im_max = 2;
-	}
+	(*param_factory())->rl_min = -2;
+	(*param_factory())->rl_max = 2;
+	(*param_factory())->im_min = -2;
+	(*param_factory())->im_max = 2;
 	if (!((*param_factory())->set))
 		write_options();
 }
@@ -99,9 +97,9 @@ void	get_int_values(char *value1, char type)
 
 	value = (double) ft_atoi(value1);
 	if (type == 'r')
-		(*param_factory())->rl = value;
+		((*param_factory())->julia_values).rl = value;
 	else
-		(*param_factory())->im = value;
+		((*param_factory())->julia_values).im = value;
 }
 
 void	get_double_values(char *value1, char type)
@@ -124,9 +122,9 @@ void	get_double_values(char *value1, char type)
 	if (hole < 0)
 		value *= -1;
 	if (type == 'r')
-		(*param_factory())->rl = value;
+		((*param_factory())->julia_values).rl = value;
 	else
-		(*param_factory())->im = value;
+		((*param_factory())->julia_values).im = value;
 	clean_split(split);
 }
 

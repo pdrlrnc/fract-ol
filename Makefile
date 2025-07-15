@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILES	= main parser factories mandlebrot render events debug
+SRC_FILES	= main parser factories mandlebrot render events julia debug
 FT_PRINTF	= ft_printf
 MINILIBX	= minilibx-linux
 SRC_DIR		= src

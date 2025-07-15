@@ -70,3 +70,11 @@ t_complex	add_complex(t_complex point1, t_complex point2)
 	res.im = point1.im + point2.im;
 	return (res);
 }
+
+double	compute_magnitude(t_complex point)
+{
+	double	res;
+
+	res = sqrt((point.rl * point.rl) + (point.im * point.im));
+	return (res);
+}

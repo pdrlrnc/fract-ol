@@ -54,11 +54,12 @@ void	cleanup(void)
 
 int	key_handler(int keycode)
 {
-	ft_printf("|%d|\n", keycode);
 	if (keycode == 65307)
 		cleanup();
 	if (keycode == 65363 || keycode == 65361)
 		on_x_axys_key(keycode);
+	if (keycode == 65362 || keycode == 65364)
+		on_y_axys_key(keycode);
 	if (keycode == 65307)
 		exit(EXIT_SUCCESS);
 	return (0);
@@ -70,6 +71,8 @@ void	setup_image(void)
 	(*image_factory())->addr = mlx_get_data_addr((*image_factory())->image, &((*image_factory())->bits_per_pixel), &((*image_factory())->line_length), &((*image_factory())->endian));
 	if ((*param_factory())->set == 'm')
 		draw_mandlebrot();
+	else
+		draw_julia();
 }
 
 void	my_mlx_pixel_put(int x, int y, int color)

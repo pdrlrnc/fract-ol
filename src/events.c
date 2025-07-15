@@ -37,3 +37,21 @@ void	on_x_axys_key(int keycode)
 	}
 	draw_mandlebrot();
 }
+
+void	on_y_axys_key(int keycode)
+{
+	double	delta;
+
+	delta = 10 * ((*param_factory())->rl_max - (*param_factory())->rl_min) / (*param_factory())->wy;
+	if (keycode == 65364)
+	{
+		(*param_factory())->im_min -= delta;
+		(*param_factory())->im_max -= delta;
+	}
+	else
+	{
+		(*param_factory())->im_min += delta;
+		(*param_factory())->im_max += delta;
+	}
+	draw_mandlebrot();
+}

@@ -13,11 +13,16 @@
 #include "../include/fractol.h"
 #include <stdio.h>
 
+void print_complex(t_complex complex)
+{
+	printf("c = %f + %fi\n", complex.rl, complex.im);
+}
+
 void print_params(void)
 {
 	printf("set       : %c\n",   (*param_factory())->set);
-	printf("rl        : %f\n",   (*param_factory())->rl);
-	printf("im        : %f\n",   (*param_factory())->im);
+	printf("julia_val : ");
+	print_complex((*param_factory())->julia_values);
 	printf("wx        : %f\n",   (*param_factory())->wx);
 	printf("wy        : %f\n",   (*param_factory())->wy);
 	printf("rl_max    : %f\n",   (*param_factory())->rl_max);
