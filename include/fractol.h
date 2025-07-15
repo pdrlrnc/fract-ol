@@ -80,5 +80,6 @@ void	cleanup(void);
 int	on_destroy(void *param);
 void	create_hooks(void);
 void	on_right_key(void);
+void	print_params(void);
 
 #endif
