@@ -32,23 +32,18 @@ int	is_in_mandlebrot(t_complex point)
 
 }
 
-int	is_in_julia(t_complex complex)
+int	is_in_julia(t_complex point)
 {
-	t_complex	squared;
-	t_complex	aux;
+	t_complex	z;
 	int	i;
 
 	i = 0;
+	z = point;
 	while (i < (*param_factory())->max_iter)
 	{
-		squared.rl = complex.rl * complex.rl;
-		squared.im = complex.im * complex.im;
-		if (squared.rl + squared.im > 4.0)
+		z = add_complex(square_complex(z), (*param_factory())->julia_values);
+		if ((z.rl * z.rl) + (z.im * z.im) > 2.0)
 			return (get_colour(i));
-		aux.rl = squared.rl - squared.im + (*param_factory())->julia_values.rl;
-		aux.im = 2 * complex.rl * complex.im + (*param_factory())->julia_values.im;
-		complex.rl = aux.rl;
-		complex.im = aux.im;
 		i++;
 	}
 	return (get_colour((*param_factory())->max_iter));

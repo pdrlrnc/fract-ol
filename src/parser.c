@@ -113,23 +113,41 @@ void	get_double_values(char *value1, char type)
 	int	dec;
 	char	**split;
 	double	decimal_part;
+	int	neg;
+	int	zeroes;
 
 	value = 0.0;
+	neg = 0;
 	split = ft_split(value1, '.');
 	hole = ft_atoi(split[0]);
+	if (*(split[0]) == '-')
+		neg = 1;
 	dec = ft_atoi(split[1]);
+	zeroes = left_zeroes(split[1]);
 	decimal_part = dec;
 	dec = ft_nbsize(dec);
 	while (dec--)
 		decimal_part *= 0.1;
+	while (zeroes--)
+		decimal_part *= 0.1;
 	value = abs(hole) + decimal_part;
-	if (hole < 0)
+	if (hole < 0 || neg)
 		value *= -1;
 	if (type == 'r')
 		((*param_factory())->julia_values).rl = value;
 	else
 		((*param_factory())->julia_values).im = value;
 	clean_split(split);
+}
+
+int	left_zeroes(char *decimal)
+{
+	int	i;
+
+	i = 0;
+	while (*(decimal + i) == '0')
+		i++;
+	return (i);
 }
 
 void	clean_split(char **split)
