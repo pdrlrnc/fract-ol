@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 int	is_in_mandlebrot(t_complex point)
-{	
+{
 	int			i;
 	t_complex	curr;
 
@@ -29,13 +29,12 @@ int	is_in_mandlebrot(t_complex point)
 		i++;
 	}
 	return (get_colour((*param_factory())->max_iter));
-
 }
 
 int	is_in_julia(t_complex point)
 {
 	t_complex	z;
-	int	i;
+	int			i;
 
 	i = 0;
 	z = point;
@@ -51,7 +50,7 @@ int	is_in_julia(t_complex point)
 
 void	draw_fractal(void)
 {
-	t_pixel pixel;
+	t_pixel	pixel;
 
 	pixel.px = 0;
 	pixel.py = 0;
@@ -61,12 +60,15 @@ void	draw_fractal(void)
 		while (pixel.px < (*param_factory())->wx)
 		{
 			if ((*param_factory())->set == 'm')
-				my_mlx_pixel_put(pixel.px, pixel.py, (is_in_mandlebrot(scale_pixel(pixel))));
+				my_mlx_pixel_put(pixel.px, pixel.py, (
+						is_in_mandlebrot(scale_pixel(pixel))));
 			else
-				my_mlx_pixel_put(pixel.px, pixel.py, (is_in_julia(scale_pixel(pixel))));
+				my_mlx_pixel_put(pixel.px, pixel.py, (
+						is_in_julia(scale_pixel(pixel))));
 			pixel.px++;
 		}
 		pixel.py++;
 	}
-	mlx_put_image_to_window((*param_factory())->init, (*param_factory())->window, (*image_factory())->image, 0, 0);
+	mlx_put_image_to_window((*param_factory())->init, (
+			*param_factory())->window, (*image_factory())->image, 0, 0);
 }

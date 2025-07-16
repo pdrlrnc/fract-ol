@@ -15,9 +15,9 @@
 t_complex	scale_pixel(t_pixel p)
 {
 	t_complex	res;
-	double	aspect;
-	double	real_range;
-	double	imag_range;
+	double		aspect;
+	double		real_range;
+	double		imag_range;
 
 	real_range = ((*param_factory())->rl_max - (*param_factory())->rl_min);
 	imag_range = ((*param_factory())->im_max - (*param_factory())->im_min);
@@ -26,8 +26,10 @@ t_complex	scale_pixel(t_pixel p)
 	if (imag_range == 0)
 		imag_range = 1;
 	aspect = (*param_factory())->wy / (*param_factory())->wx;
-	res.rl = (*param_factory())->rl_min + ((double)p.px / (*param_factory())->wx) * real_range;
-	res.im = (*param_factory())->im_min + ((double)p.py / (*param_factory())->wy) * imag_range;
+	res.rl = (*param_factory())->rl_min + ((double)p
+			.px / (*param_factory())->wx) * real_range;
+	res.im = (*param_factory())->im_min + ((double)p
+			.py / (*param_factory())->wy) * imag_range;
 	return (res);
 }
 
@@ -38,7 +40,7 @@ int	get_colour(int i)
 
 	max = (*param_factory())->max_iter;
 	if (i == 0)
-        	return (0xFFFFFF);
+		return (0xFFFFFF);
 	if (i >= max)
 		return (0x000000);
 	shade = (255 * (max - i)) / max;

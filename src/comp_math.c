@@ -37,4 +37,3 @@ double	compute_magnitude(t_complex point)
 	res = sqrt((point.rl * point.rl) + (point.im * point.im));
 	return (res);
 }
-

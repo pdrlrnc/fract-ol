@@ -58,8 +58,14 @@ int	key_handler(int keycode)
 {
 	if (keycode == 65307)
 		cleanup();
-	if (keycode == 91 || keycode == 93)
-		change_iter(keycode);
+	if (keycode == 91)
+		(*param_factory())->max_iter++;
+	if (keycode == 47)
+		(*param_factory())->max_iter--;
+	if ((*param_factory())->max_iter <= 0)
+		(*param_factory())->max_iter = 1;
+	if(keycode == 91 || keycode == 47)
+		draw_fractal();
 	if (keycode == 65363 || keycode == 65361)
 		on_x_axys_key(keycode);
 	if (keycode == 65362 || keycode == 65364)

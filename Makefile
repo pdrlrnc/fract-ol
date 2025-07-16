@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILES	= main parser factories fractals comp_math render events debug
+SRC_FILES	= main parser factories fractals comp_math render events
 FT_PRINTF	= ft_printf
 MINILIBX	= minilibx-linux
 SRC_DIR		= src
