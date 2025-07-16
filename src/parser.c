@@ -47,7 +47,11 @@ void	parse_args(int argc, char **argv)
 		&& (ft_strisequal(argv[4], "-W") || ft_strisequal(argv[4], "--window")))
 	{
 		(*param_factory())->wx = ft_atoi(argv[5]);
+		if ((*param_factory())->wx == 0)
+			(*param_factory())->wx = 1;
 		(*param_factory())->wy = ft_atoi(argv[6]);
+		if ((*param_factory())->wy == 0)
+			(*param_factory())->wy = 1;
 		return ;
 	}
 }

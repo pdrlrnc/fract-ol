@@ -31,6 +31,8 @@ int	mouse_handler(int mousecode)
 {
 	if (mousecode == 4)
 		zoom_in();
+	if (mousecode == 5)
+		zoom_out();
 	return (0);
 }
 
@@ -54,7 +56,6 @@ void	cleanup(void)
 
 int	key_handler(int keycode)
 {
-	ft_printf("%d\n", keycode);
 	if (keycode == 65307)
 		cleanup();
 	if (keycode == 91 || keycode == 93)

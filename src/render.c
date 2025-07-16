@@ -21,6 +21,10 @@ t_complex	scale_pixel(t_pixel p)
 
 	real_range = ((*param_factory())->rl_max - (*param_factory())->rl_min);
 	imag_range = ((*param_factory())->im_max - (*param_factory())->im_min);
+	if (real_range == 0)
+		real_range = 1;
+	if (imag_range == 0)
+		imag_range = 1;
 	aspect = (*param_factory())->wy / (*param_factory())->wx;
 	res.rl = (*param_factory())->rl_min + ((double)p.px / (*param_factory())->wx) * real_range;
 	res.im = (*param_factory())->im_min + ((double)p.py / (*param_factory())->wy) * imag_range;

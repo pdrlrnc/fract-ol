@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -62,8 +62,35 @@ void	zoom_in(void)
 	double	imag_c;
 	double	half_w;
 	double	half_h;
-
+	
+	if ((*param_factory())->zoom < 1.0)
+		(*param_factory())->zoom = 1.0;
 	(*param_factory())->zoom += 0.01;
+	if ((*param_factory())->zoom == 0)
+		(*param_factory())->zoom = 1;
+	real_c = ((*param_factory())->rl_min + (*param_factory())->rl_max) * 0.5;
+	imag_c = ((*param_factory())->im_min + (*param_factory())->im_max) * 0.5;
+	half_w = ((*param_factory())->rl_max - (*param_factory())->rl_min) * 0.5 / (*param_factory())->zoom;
+	half_h = ((*param_factory())->im_max - (*param_factory())->im_min) * 0.5 / (*param_factory())->zoom;
+	(*param_factory())->rl_min = real_c - half_w;
+	(*param_factory())->rl_max = real_c + half_w;
+	(*param_factory())->im_min = imag_c - half_h;
+	(*param_factory())->im_max = imag_c + half_h;
+	draw_fractal();
+}
+
+void	zoom_out(void)
+{
+	double	real_c;
+	double	imag_c;
+	double	half_w;
+	double	half_h;
+
+	if ((*param_factory())->zoom > 1.0)
+		(*param_factory())->zoom = 1.0;
+	(*param_factory())->zoom -= 0.01;
+	if ((*param_factory())->zoom == 0)
+		(*param_factory())->zoom = 1;
 	real_c = ((*param_factory())->rl_min + (*param_factory())->rl_max) * 0.5;
 	imag_c = ((*param_factory())->im_min + (*param_factory())->im_max) * 0.5;
 	half_w = ((*param_factory())->rl_max - (*param_factory())->rl_min) * 0.5 / (*param_factory())->zoom;

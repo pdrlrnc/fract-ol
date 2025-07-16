@@ -24,7 +24,7 @@ t_params	**param_factory(void)
 		params->wx = 500;
 		params->wy = 500;
 		params->max_iter = 1;
-		params->zoom = 1.1;
+		params->zoom = 1.0;
 	}
 	return (&params);
 }
