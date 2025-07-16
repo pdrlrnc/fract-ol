@@ -26,3 +26,21 @@ t_complex	scale_pixel(t_pixel p)
 	res.im = (*param_factory())->im_min + ((double)p.py / (*param_factory())->wy) * imag_range;
 	return (res);
 }
+
+int	get_colour(int i, t_complex z)
+{
+	double	mod;
+	double	smooth;
+	unsigned int	colour;
+
+	mod = i + 1.0 - log(log(sqrt(z.rl * z.rl + z.im * z.im))) / log(2.0);
+	smooth = mod / 500;
+	if (smooth < 0)
+		smooth = 0.0;
+	if (smooth > 1)
+		smooth = 1.0;
+	colour = (unsigned int)(smooth * 0xFFFFFF);
+	if (i == 500)
+		colour = 0x000000;
+	return (colour);
+}

@@ -84,5 +84,6 @@ void	on_y_axys_key(int keycode);
 void	print_params(void);
 int	is_in_julia(t_complex complex);
 double	compute_magnitude(t_complex point);
+int	get_colour(int i, t_complex z);
 
 #endif
