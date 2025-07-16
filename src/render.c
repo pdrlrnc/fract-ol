@@ -27,3 +27,16 @@ t_complex	scale_pixel(t_pixel p)
 	return (res);
 }
 
+int	get_colour(int i)
+{
+	int	max;
+	int	shade;
+
+	max = (*param_factory())->max_iter;
+	if (i == 0)
+        	return (0xFFFFFF);
+	if (i >= max)
+		return (0x000000);
+	shade = (255 * (max - i)) / max;
+	return ((shade << 16) | (shade << 8) | shade);
+}

@@ -88,5 +88,6 @@ int	is_in_julia(t_complex complex);
 double	compute_magnitude(t_complex point);
 void	zoom_in(void);
 void	change_iter(int keycode);
+int	get_colour(int i);
 
 #endif
