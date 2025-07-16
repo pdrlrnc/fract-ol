@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 
 int	mouse_handler(int mousecode)
 {
-	if (mousecode)
-		return (0);
-	return (1);
+	if (mousecode == 4)
+		zoom_in();
+	return (0);
 }
 
 void	create_hooks(void)
@@ -54,8 +54,11 @@ void	cleanup(void)
 
 int	key_handler(int keycode)
 {
+	ft_printf("%d\n", keycode);
 	if (keycode == 65307)
 		cleanup();
+	if (keycode == 91 || keycode == 93)
+		change_iter(keycode);
 	if (keycode == 65363 || keycode == 65361)
 		on_x_axys_key(keycode);
 	if (keycode == 65362 || keycode == 65364)

@@ -45,9 +45,11 @@ typedef struct s_image
 typedef struct s_params
 {
 	char	set;
+	int	max_iter;
 	t_complex	julia_values;
 	double	wx;
 	double	wy;
+	double	zoom;
 	double	rl_max;
 	double	rl_min;
 	double	im_max;
@@ -84,6 +86,7 @@ void	on_y_axys_key(int keycode);
 void	print_params(void);
 int	is_in_julia(t_complex complex);
 double	compute_magnitude(t_complex point);
-int	get_colour(int i, t_complex z);
+void	zoom_in(void);
+void	change_iter(int keycode);
 
 #endif

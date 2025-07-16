@@ -55,3 +55,31 @@ void	on_y_axys_key(int keycode)
 	}
 	draw_fractal();
 }
+
+void	zoom_in(void)
+{
+	double	real_c;
+	double	imag_c;
+	double	half_w;
+	double	half_h;
+
+	(*param_factory())->zoom += 0.01;
+	real_c = ((*param_factory())->rl_min + (*param_factory())->rl_max) * 0.5;
+	imag_c = ((*param_factory())->im_min + (*param_factory())->im_max) * 0.5;
+	half_w = ((*param_factory())->rl_max - (*param_factory())->rl_min) * 0.5 / (*param_factory())->zoom;
+	half_h = ((*param_factory())->im_max - (*param_factory())->im_min) * 0.5 / (*param_factory())->zoom;
+	(*param_factory())->rl_min = real_c - half_w;
+	(*param_factory())->rl_max = real_c + half_w;
+	(*param_factory())->im_min = imag_c - half_h;
+	(*param_factory())->im_max = imag_c + half_h;
+	draw_fractal();
+}
+
+void	change_iter(int keycode)
+{
+	if (keycode == 91)
+		(*param_factory())->max_iter++;
+	else
+		(*param_factory())->max_iter--;	
+	draw_fractal();
+}
