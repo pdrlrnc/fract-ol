@@ -24,7 +24,11 @@ void	parse_args(int argc, char **argv)
 		&& check_nb(argv[4]) == 1)
 	{
 		(*param_factory())->wx = ft_atoi(argv[3]);
+		if ((*param_factory())->wx <= 20)
+			write_options();
 		(*param_factory())->wy = ft_atoi(argv[4]);
+		if ((*param_factory())->wy <= 20)
+			write_options();
 		return ;
 	}
 	if ((*param_factory())->set == 'm' && argc == 2)
@@ -47,11 +51,11 @@ void	parse_args(int argc, char **argv)
 		&& (ft_strisequal(argv[4], "-W") || ft_strisequal(argv[4], "--window")))
 	{
 		(*param_factory())->wx = ft_atoi(argv[5]);
-		if ((*param_factory())->wx == 0)
-			(*param_factory())->wx = 1;
+		if ((*param_factory())->wx <= 20)
+			write_options();
 		(*param_factory())->wy = ft_atoi(argv[6]);
-		if ((*param_factory())->wy == 0)
-			(*param_factory())->wy = 1;
+		if ((*param_factory())->wy <= 20)
+			write_options();
 		return ;
 	}
 }
@@ -173,7 +177,7 @@ void	write_options(void)
 	ft_printf("               ~ Options: ~                \n");
 	ft_printf("-M  --mandelbrot\t\tUse the Mandelbrot set.\n");
 	ft_printf("-J  --julia\t\t\tUse the Julia set. NEEDS x and y as in z = x + yi (z is a complex number).\n");
-	ft_printf("-W  --window\t\t\tWindow size. NEEDS x and y. Not required.\n\n");
+	ft_printf("-W  --window\t\t\tWindow size. NEEDS x and y. X and Y MUST be > 20. Not required.\n\n");
 	ft_printf("The set is required. Example: ./fractol -J 4.3 2.5 --window 600 400\n\n");
 	ft_printf("Press ESC at any time of the program exexcution to exit\n\n");
 	exit(EXIT_FAILURE);

@@ -17,10 +17,17 @@ int	main(int argc, char **argv)
 	parse_args(argc, argv);
 	(*param_factory())->init = mlx_init();
 	if(!(*param_factory())->init)
-		ft_printf("Fds");
+	{
+		free((*param_factory()));
+		exit(EXIT_FAILURE);
+	}
 	(*param_factory())->window = mlx_new_window((*param_factory())->init , (*param_factory())->wx,  (*param_factory())->wy, "fract-ol");
 	if (!(*param_factory())->window)
-		ft_printf("Fds2");
+	{
+		free((*param_factory())->init);
+		free(*param_factory());
+		exit(EXIT_FAILURE);
+	}
 	create_hooks();
 	setup_image();
 	mlx_loop((*param_factory())->init);
@@ -78,7 +85,21 @@ int	key_handler(int keycode)
 void	setup_image(void)
 {
 	(*image_factory())->image = mlx_new_image((*param_factory())->init, (*param_factory())->wx, (*param_factory())->wy);
+	if (!(*image_factory())->image)
+	{
+		mlx_destroy_window((*param_factory())->init,(*param_factory())->window);
+		mlx_destroy_display((*param_factory())->init);
+		free((*param_factory())->init);
+		free(*param_factory());
+		free(*image_factory());
+		exit(EXIT_FAILURE);
+	}
 	(*image_factory())->addr = mlx_get_data_addr((*image_factory())->image, &((*image_factory())->bits_per_pixel), &((*image_factory())->line_length), &((*image_factory())->endian));
+	if (!(*image_factory())->addr)
+	{
+		cleanup();
+		exit(EXIT_FAILURE);
+	}
 	draw_fractal();
 }
 
