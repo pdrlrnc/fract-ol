@@ -89,5 +89,6 @@ void	zoom_in(void);
 int	get_colour(int i);
 void	zoom_out(void);
 int	left_zeroes(char *decimal);
+void	parse_args_cont(int argc, char **argv);
 
 #endif

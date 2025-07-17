@@ -14,8 +14,8 @@
 
 t_params	**param_factory(void)
 {
-	static t_params *params;
-	
+	static t_params	*params;
+
 	if (!params)
 	{
 		params = malloc(sizeof(t_params));
