@@ -18,6 +18,7 @@ INC_DIR		= include
 NAME		= fractol
 MINILIBX_URL	= https://github.com/42paris/minilibx-linux
 CLONE_DIR	= minilibx-linux
+MLX_LIB		=$(CLONE_DIR)/libmlx.a
 
 CC			= cc
 RM			= rm -rf
@@ -28,13 +29,13 @@ SRC			= $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(SRC_FILES)))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
 all: $(NAME)
+	@echo "Fract~ol ready! Have fun!"
 
 $(OBJ_DIR):
 	@mkdir -p $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) minilibx
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) $(MLX_LIB)
 	@$(CC) -g $(CFLAGS) -I$(CLONE_DIR) -c $< -o $@
-
 
 $(NAME): $(OBJ)
 	@make -s -C $(FT_PRINTF)
@@ -54,6 +55,9 @@ fclean: clean
 
 $(CLONE_DIR):
 	@git clone --depth 1 $(MINILIBX_URL) $(CLONE_DIR)
+
+$(MLX_LIB): | $(CLONE_DIR)
+	make -s -C $(CLONE_DIR)
 
 minilibx: $(CLONE_DIR)
 	@make -s -C $(CLONE_DIR)
