@@ -13,8 +13,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#include "mlx_int.h"
-#include "mlx.h"
+#include "../minilibx-linux/mlx_int.h"
+#include "../minilibx-linux/mlx.h"
 #include "libft.h"
 #include "printf.h"
 #include <stdlib.h>
