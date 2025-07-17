@@ -13,13 +13,13 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#include "../minilibx-linux/mlx_int.h"
-#include "../minilibx-linux/mlx.h"
-#include "libft.h"
-#include "printf.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
+# include "../minilibx-linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "libft.h"
+# include "printf.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
 
 typedef struct s_pixel
 {
@@ -37,58 +37,56 @@ typedef struct s_image
 {
 	void	*image;
 	char	*addr;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_image;
 
 typedef struct s_params
 {
-	char	set;
-	int	max_iter;
+	int			max_iter;
+	char		set;
+	void		*init;
+	void		*window;
+	double		wx;
+	double		wy;
+	double		zoom;
+	double		rl_max;
+	double		rl_min;
+	double		im_max;
+	double		im_min;
 	t_complex	julia_values;
-	double	wx;
-	double	wy;
-	double	zoom;
-	double	rl_max;
-	double	rl_min;
-	double	im_max;
-	double	im_min;
-	void	*init;
-	void	*window;
 }	t_params;
 
-
-
-int	key_handler(int keycode);
-int	mouse_handler(int mousecode);
-void	write_options(void);
-void	parse_args(int argc, char **argv);
-void	get_set(char *set);
+int			key_handler(int keycode);
+int			mouse_handler(int mousecode);
+int			check_nb(char *nb);
+int			is_in_mandlebrot(t_complex point);
+int			is_in_julia(t_complex complex);
+int			get_colour(int i);
+int			on_destroy(void *param);
+int			left_zeroes(char *decimal);
+void		write_options(void);
+void		parse_args(int argc, char **argv);
+void		get_set(char *set);
+void		get_double_values(char *value1, char type);
+void		get_int_values(char *value1, char type);
+void		clean_split(char **split);
+void		setup_image(void);
+void		my_mlx_pixel_put(int x, int y, int color);
+void		draw_fractal(void);
+void		cleanup(void);
+void		create_hooks(void);
+void		on_x_axys_key(int keycode);
+void		on_y_axys_key(int keycode);
+void		zoom_in(void);
+void		zoom_out(void);
+void		parse_args_cont(int argc, char **argv);
+t_image		**image_factory(void);
+double		compute_magnitude(t_complex point);
 t_params	**param_factory(void);
-void	get_double_values(char *value1, char type);
-void	get_int_values(char *value1, char type);
-void	clean_split(char **split);
-int	check_nb(char *nb);
-t_image	**image_factory(void);
-void	setup_image(void);
-void	my_mlx_pixel_put(int x, int y, int color);
-void	draw_fractal(void);
 t_complex	square_complex(t_complex point);
 t_complex	add_complex(t_complex point1, t_complex point2);
 t_complex	scale_pixel(t_pixel p);
-int	is_in_mandlebrot(t_complex point);
-void	cleanup(void);
-int	on_destroy(void *param);
-void	create_hooks(void);
-void	on_x_axys_key(int keycode);
-void	on_y_axys_key(int keycode);
-int	is_in_julia(t_complex complex);
-double	compute_magnitude(t_complex point);
-void	zoom_in(void);
-int	get_colour(int i);
-void	zoom_out(void);
-int	left_zeroes(char *decimal);
-void	parse_args_cont(int argc, char **argv);
 
 #endif

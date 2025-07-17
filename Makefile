@@ -46,12 +46,17 @@ $(NAME): $(OBJ)
 clean:
 	@$(RM) $(OBJ_DIR)
 	@make clean -s -C $(FT_PRINTF)
-	@make clean -s -C $(CLONE_DIR)
+	@if [ -d $(CLONE_DIR) ]; then \
+	  make clean -s -C $(CLONE_DIR); \
+	fi
 
 fclean: clean
-	@$(RM) $(CLONE_DIR)
 	@$(RM) $(NAME) libft.a
 	@make fclean -s -C $(FT_PRINTF)
+	@if [ -d $(CLONE_DIR) ]; then \
+	  make clean -s -C $(CLONE_DIR); \
+	fi
+	@$(RM) -rf $(CLONE_DIR)
 
 $(CLONE_DIR):
 	@git clone --depth 1 $(MINILIBX_URL) $(CLONE_DIR)
