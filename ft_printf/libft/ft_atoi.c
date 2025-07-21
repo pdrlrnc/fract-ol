@@ -15,11 +15,11 @@
 /*prototypes*/
 static int	ft_isspace(char c);
 
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
-	int	result;
-	int	i;
-	int	minus;
+	long long	result;
+	int			i;
+	int			minus;
 
 	result = 0;
 	minus = 1;

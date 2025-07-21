@@ -46,3 +46,13 @@ int	get_colour(int i)
 	shade = (255 * (max - i)) / max;
 	return ((shade << 16) | (shade << 8) | shade);
 }
+
+void	check_weird_input(char **argv)
+{
+	if (ft_strlen(argv[2]) == 1 && (*argv[2] == '+' || *argv[2] == '-'))
+		write_options();
+	if (ft_strlen(argv[3]) == 1 && (*argv[3] == '+' || *argv[3] == '-'))
+		write_options();
+	if (check_for_overflow(argv[3]) || check_for_overflow(argv[2]))
+		write_options();
+}

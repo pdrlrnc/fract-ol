@@ -19,6 +19,7 @@
 # include "printf.h"
 # include <stdlib.h>
 # include <math.h>
+# include <limits.h>
 
 typedef struct s_pixel
 {
@@ -64,6 +65,7 @@ int			is_in_mandlebrot(t_complex point);
 int			is_in_julia(t_complex complex);
 int			get_colour(int i);
 int			on_destroy(void *param);
+int			check_for_overflow(char *nb);
 int			left_zeroes(char *decimal);
 void		write_options(void);
 void		parse_args(int argc, char **argv);
@@ -78,6 +80,7 @@ void		cleanup(void);
 void		create_hooks(void);
 void		on_x_axys_key(int keycode);
 void		on_y_axys_key(int keycode);
+void		check_weird_input(char **argv);
 void		zoom_in(void);
 void		zoom_out(void);
 void		parse_args_cont(int argc, char **argv);

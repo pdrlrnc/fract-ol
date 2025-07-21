@@ -25,10 +25,10 @@ void	parse_args(int argc, char **argv)
 		&& check_nb(argv[4]) == 1)
 	{
 		(*param_factory())->wx = ft_atoi(argv[3]);
-		if ((*param_factory())->wx <= 20)
+		if ((*param_factory())->wx <= 20 || check_for_overflow(argv[3]))
 			write_options();
 		(*param_factory())->wy = ft_atoi(argv[4]);
-		if ((*param_factory())->wy <= 20)
+		if ((*param_factory())->wy <= 20 || check_for_overflow(argv[4]))
 			write_options();
 		return ;
 	}
@@ -43,10 +43,7 @@ void	parse_args(int argc, char **argv)
 
 void	parse_args_cont(int argc, char **argv)
 {
-	if (ft_strlen(argv[2]) == 1 && (*argv[2] == '+' || *argv[2] == '-'))
-		write_options();
-	if (ft_strlen(argv[3]) == 1 && (*argv[3] == '+' || *argv[3] == '-'))
-		write_options();
+	check_weird_input(argv);
 	if (check_nb(argv[2]) == 2)
 		get_double_values(argv[2], 'r');
 	else
@@ -61,10 +58,10 @@ void	parse_args_cont(int argc, char **argv)
 		&& (ft_strisequal(argv[4], "-W") || ft_strisequal(argv[4], "--window")))
 	{
 		(*param_factory())->wx = ft_atoi(argv[5]);
-		if ((*param_factory())->wx <= 20)
+		if ((*param_factory())->wx <= 20 || check_for_overflow(argv[5]))
 			write_options();
 		(*param_factory())->wy = ft_atoi(argv[6]);
-		if ((*param_factory())->wy <= 20)
+		if ((*param_factory())->wy <= 20 || check_for_overflow(argv[5]))
 			write_options();
 		return ;
 	}
@@ -107,4 +104,14 @@ void	get_set(char *set)
 	(*param_factory())->im_max = 2;
 	if (!((*param_factory())->set))
 		write_options();
+}
+
+int	check_for_overflow(char *nb)
+{
+	long long	res;
+
+	res = ft_atoi(nb);
+	if (res > INT_MAX || res < INT_MIN)
+		return (1);
+	return (0);
 }
