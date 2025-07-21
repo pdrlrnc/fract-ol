@@ -18,7 +18,6 @@
 # include "libft.h"
 # include "printf.h"
 # include <stdlib.h>
-# include <stdio.h>
 # include <math.h>
 
 typedef struct s_pixel

@@ -36,12 +36,16 @@ void	parse_args(int argc, char **argv)
 		return ;
 	if ((*param_factory())->set == 'm')
 		write_options();
+	if ((*param_factory())->set == 'j' && argc == 2)
+		write_options();
 	parse_args_cont(argc, argv);
 }
 
 void	parse_args_cont(int argc, char **argv)
 {
-	if ((*param_factory())->set == 'j' && argc == 2)
+	if (ft_strlen(argv[2]) == 1 && (*argv[2] == '+' || *argv[2] == '-'))
+		write_options();
+	if (ft_strlen(argv[3]) == 1 && (*argv[3] == '+' || *argv[3] == '-'))
 		write_options();
 	if (check_nb(argv[2]) == 2)
 		get_double_values(argv[2], 'r');
