@@ -26,7 +26,7 @@ void	on_x_axys_key(int keycode)
 
 	delta = 10 * ((*param_factory())->rl_max - (*param_factory())->rl_min)
 		/ (*param_factory())->wx;
-	if (keycode == 65363)
+	if (keycode == XK_Right)
 	{
 		(*param_factory())->rl_min -= delta;
 		(*param_factory())->rl_max -= delta;
@@ -45,7 +45,7 @@ void	on_y_axys_key(int keycode)
 
 	delta = 10 * ((*param_factory())->rl_max - (*param_factory())->rl_min)
 		/ (*param_factory())->wy;
-	if (keycode == 65364)
+	if (keycode == XK_Down)
 	{
 		(*param_factory())->im_min -= delta;
 		(*param_factory())->im_max -= delta;

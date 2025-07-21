@@ -23,21 +23,19 @@ int	mouse_handler(int mousecode)
 
 int	key_handler(int keycode)
 {
-	if (keycode == 65307)
+	if (keycode == XK_Escape)
 		cleanup();
-	if (keycode == 91)
+	if (keycode == XK_m)
 		(*param_factory())->max_iter++;
-	if (keycode == 47)
+	if (keycode == XK_l)
 		(*param_factory())->max_iter--;
 	if ((*param_factory())->max_iter <= 0)
 		(*param_factory())->max_iter = 1;
-	if (keycode == 91 || keycode == 47)
+	if (keycode == XK_m || keycode == XK_l)
 		draw_fractal();
-	if (keycode == 65363 || keycode == 65361)
+	if (keycode == XK_Left || keycode == XK_Right)
 		on_x_axys_key(keycode);
-	if (keycode == 65362 || keycode == 65364)
+	if (keycode == XK_Up || keycode == XK_Down)
 		on_y_axys_key(keycode);
-	if (keycode == 65307)
-		exit(EXIT_SUCCESS);
 	return (0);
 }
