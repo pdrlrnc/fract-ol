@@ -53,7 +53,7 @@ The goal of this project was to create a small graphics program called `fract-ol
 - [Understanding Julia and Mandelbrot Sets](https://www.karlsims.com/julia.html)  
 - [What’s so special about the Mandelbrot Set? – Numberphile](https://www.youtube.com/watch?v=FFftmWSzgmk)  
 - [Julia Set Fractal (2D)](https://paulbourke.net/fractals/juliaset/index.html)  
-- [The Julia Set by Dominic Ford] (https://sciencedemos.org.uk/julia.php)
+- [The Julia Set by Dominic Ford](https://sciencedemos.org.uk/julia.php)
 - My own tears and `gdb`  
 - My friends and colleagues at 42 Lisboa
 

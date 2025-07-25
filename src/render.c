@@ -15,17 +15,25 @@
 t_complex	scale_pixel(t_pixel p)
 {
 	t_complex	res;
-	double		aspect;
 	double		real_range;
 	double		imag_range;
+	double		real_center;
+	double		imag_center;
 
+	real_center = ((*param_factory())
+			->rl_max + (*param_factory())->rl_min) / 2.0;
+	imag_center = ((*param_factory())
+			->im_max + (*param_factory())->im_min) / 2.0;
 	real_range = ((*param_factory())->rl_max - (*param_factory())->rl_min);
-	imag_range = ((*param_factory())->im_max - (*param_factory())->im_min);
+	imag_range = real_range * (*param_factory())->wy / (*param_factory())->wx;
 	if (real_range == 0)
 		real_range = 1;
 	if (imag_range == 0)
 		imag_range = 1;
-	aspect = (*param_factory())->wy / (*param_factory())->wx;
+	(*param_factory())->rl_min = real_center - real_range / 2.0;
+	(*param_factory())->rl_max = real_center + real_range / 2.0;
+	(*param_factory())->im_min = imag_center - imag_range / 2.0;
+	(*param_factory())->im_max = imag_center + imag_range / 2.0;
 	res.rl = (*param_factory())->rl_min + ((double)p
 			.px / (*param_factory())->wx) * real_range;
 	res.im = (*param_factory())->im_min + ((double)p

@@ -58,10 +58,12 @@ void	parse_args_cont(int argc, char **argv)
 		&& (ft_strisequal(argv[4], "-W") || ft_strisequal(argv[4], "--window")))
 	{
 		(*param_factory())->wx = ft_atoi(argv[5]);
-		if ((*param_factory())->wx <= 20 || check_for_overflow(argv[5]))
+		if ((*param_factory())->wx <= 20 || (*param_factory())
+			->wx > 1280 || check_for_overflow(argv[5]))
 			write_options();
 		(*param_factory())->wy = ft_atoi(argv[6]);
-		if ((*param_factory())->wy <= 20 || check_for_overflow(argv[5]))
+		if ((*param_factory())->wy <= 20 || (*param_factory())
+			->wy > 720 || check_for_overflow(argv[5]))
 			write_options();
 		return ;
 	}
