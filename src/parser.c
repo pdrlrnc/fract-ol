@@ -52,6 +52,7 @@ void	parse_args_cont(int argc, char **argv)
 		get_double_values(argv[3], 'i');
 	else
 		get_int_values(argv[3], 'i');
+	(((*param_factory())->julia_values).im) *= (-1);
 	if (argc == 7
 		&& check_nb(argv[5]) == 1
 		&& check_nb(argv[6]) == 1
