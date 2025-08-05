@@ -16,7 +16,8 @@ void	parse_args(int argc, char **argv)
 {
 	if (argc != 2 && argc != 4 && argc != 5 && argc != 7)
 		write_options();
-	get_set(argv[1]);
+	if (get_set(argv[1]) || ((*param_factory())->set == 'm' && argc == 2))
+		return ;
 	if ((*param_factory())->set == 'm'
 		&& argc == 5
 		&& (ft_strisequal(argv[2], "-W")
@@ -25,18 +26,17 @@ void	parse_args(int argc, char **argv)
 		&& check_nb(argv[4]) == 1)
 	{
 		(*param_factory())->wx = ft_atoi(argv[3]);
-		if ((*param_factory())->wx <= 20 || check_for_overflow(argv[3]))
+		if ((*param_factory())->wx <= 20 || (*param_factory())
+			->wx > 1280 || check_for_overflow(argv[3]))
 			write_options();
 		(*param_factory())->wy = ft_atoi(argv[4]);
-		if ((*param_factory())->wy <= 20 || check_for_overflow(argv[4]))
+		if ((*param_factory())->wy <= 20 || (*param_factory())
+			->wy > 720 || check_for_overflow(argv[4]))
 			write_options();
 		return ;
 	}
-	if ((*param_factory())->set == 'm' && argc == 2)
-		return ;
-	if ((*param_factory())->set == 'm')
-		write_options();
-	if ((*param_factory())->set == 'j' && argc == 2)
+	if (((*param_factory())->set == 'j' && argc == 2) || ((*param_factory())
+			->set == 'm'))
 		write_options();
 	parse_args_cont(argc, argv);
 }
@@ -95,7 +95,7 @@ int	check_nb(char *nb)
 	return (-1);
 }
 
-void	get_set(char *set)
+int	get_set(char *set)
 {
 	if (ft_strisequal(set, "-J") || ft_strisequal(set, "--julia"))
 		(*param_factory())->set = 'j';
@@ -107,6 +107,7 @@ void	get_set(char *set)
 	(*param_factory())->im_max = 2;
 	if (!((*param_factory())->set))
 		write_options();
+	return (0);
 }
 
 int	check_for_overflow(char *nb)
